@@ -10,30 +10,29 @@
 
 class Option {
 public:
-    virtual double payoff() = 0;
+    virtual double payoff(double spotPrice) = 0;
 
-    Option(const double spotPrice, const double strikePrice) :
-    spotPrice(spotPrice), strikePrice(strikePrice) {};
+    explicit Option(const double strikePrice)
+        : strikePrice_(strikePrice) {};
 
     virtual ~Option() = default;
 protected:
-    double spotPrice {};
-    double strikePrice {};
+    double strikePrice_ {};
 
 };
 
-class EuropeanCallOption : public Option {
+class EuropeanCallOption final : public Option {
 public:
-    double payoff() { return std::max(spotPrice - strikePrice, 0.0); };
+    double payoff(const double spotPrice) override { return std::max(spotPrice - strikePrice_, 0.0); };
 
-    EuropeanCallOption(const double spotPrice, const double strikePrice) : Option {spotPrice, strikePrice} {};
+    using Option::Option;
 };
 
-class EuropeanPutOption : public Option{
+class EuropeanPutOption final : public Option{
 public:
-    double payoff() { return std::max(strikePrice - spotPrice, 0.0); };
+    double payoff(const double spotPrice) override { return std::max(strikePrice_ - spotPrice, 0.0); };
 
-    EuropeanPutOption(const double spotPrice, const double strikePrice) : Option {spotPrice, strikePrice} {};
+    using Option::Option;
 };
 
 

@@ -1,4 +1,24 @@
 20/10/2026
+So we have 4 pricers, and we want to compute the option price. First thought is obviously having a base class for the
+pricers, with a virtual function of computing the price. (whats the alternative lol?...). Since each pricing function 
+requires different kind of parameters, and the price function is inherited, we can't really inject the parameters through
+function argument. Instead, we can inject them through the class constructors.
+
+So, I have built the naive implementation for the binary tree pricer. It discretely models the underlying spot price
+movement in different nodes, then we compute the option payoff from the terminal nodes by backward induction. We compute 
+the option price by discounting the expected payoff at each node which is calculated using the risk-neutral probability.
+
+There is serval improvements done:
+1. spot price is isolated from option class, and is injected through the constructor of the pricer class.
+
+And no, that's it... Apparently, we can do lot better:
+1. avoid using recursion in the backward induction
+2. use smart pointer instead of raw pointer (this is a big no no tbh)
+3. just for god's sake, lets put the implementation into .cpp file instead of living in .hpp!!!
+
+---
+
+19/10/2026
 
 I am designing a suitable base class for option. The ideal design is:
     Price = Engine( Instrument, MarketData )
