@@ -22,14 +22,14 @@ protected:
 
 };
 
-class EuropeanCallOption : Option {
+class EuropeanCallOption : public Option {
 public:
     double payoff() { return std::max(spotPrice - strikePrice, 0.0); };
 
     EuropeanCallOption(const double spotPrice, const double strikePrice) : Option {spotPrice, strikePrice} {};
 };
 
-class EuropeanPutOption : Option{
+class EuropeanPutOption : public Option{
 public:
     double payoff() { return std::max(strikePrice - spotPrice, 0.0); };
 
