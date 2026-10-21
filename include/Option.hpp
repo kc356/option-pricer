@@ -4,7 +4,7 @@
 
 #ifndef OPTION_PRICER_OPTION_HPP
 #define OPTION_PRICER_OPTION_HPP
-#include <algorithm>
+
 
 // Price = Engine( Instrument, MarketData )
 
@@ -12,28 +12,37 @@ class Option {
 public:
     virtual double payoff(double spotPrice) = 0;
 
-    explicit Option(const double strikePrice)
-        : strikePrice_(strikePrice) {};
+    explicit Option(const double strikePrice, const double expiry)
+        : strikePrice_(strikePrice), expiry_(expiry) {};
 
     virtual ~Option() = default;
+
+    double strike_price() const {
+        return strikePrice_;
+    }
+
+    double expiry() const {
+        return expiry_;
+    }
+
 protected:
     double strikePrice_ {};
+    double expiry_ {};
 
 };
 
 class EuropeanCallOption final : public Option {
 public:
-    double payoff(const double spotPrice) override { return std::max(spotPrice - strikePrice_, 0.0); };
+    double payoff(double spotPrice) override;
 
     using Option::Option;
 };
 
 class EuropeanPutOption final : public Option{
 public:
-    double payoff(const double spotPrice) override { return std::max(strikePrice_ - spotPrice, 0.0); };
+    double payoff(double spotPrice) override;
 
     using Option::Option;
 };
-
 
 #endif //OPTION_PRICER_OPTION_HPP

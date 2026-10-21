@@ -5,15 +5,14 @@
 
 int main() {
 
-    EuropeanCallOption europeanCall {50};
+    EuropeanCallOption europeanCall {50, 1.0};
+    constexpr MarketData marketData {100.0, 0.05, 0.2};
 
-    BinomialOptionPricer pricer {0.08, -0.07, 3};
+    BinomialOptionPricer pricer { fromDiscrete(1.08, 0.93, 1.05, 5) };
+    std::cout << pricer.price(europeanCall, marketData) << std::endl;
 
-    MarketData marketData {100.0, 0.05};
-
-    std::cout << pricer.price(europeanCall, marketData);
-
-    // BinomialOptionPricer::printBinaryTree(pricer.spotPriceTreeRoot_);
+    BinomialOptionPricer crrPricer {CoxRoxRubinstein(marketData.volatility, marketData.riskFreeRate, europeanCall.expiry(), 100)};
+    std::cout << crrPricer.price(europeanCall, marketData) << std::endl;
 
     return 0;
 }
