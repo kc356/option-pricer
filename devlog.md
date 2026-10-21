@@ -1,3 +1,11 @@
+21/10/2026
+Now the naive implementation is completely updated to adopt only a vector instead of building a binary tree. We first 
+compute the option payoffs in the terminal node values, then we do the backward induction in another forloop. This is 
+mush more efficient. It also trim off quite a bit of code inside the pricer class.
+
+
+
+---
 20/10/2026
 So we have 4 pricers, and we want to compute the option price. First thought is obviously having a base class for the
 pricers, with a virtual function of computing the price. (whats the alternative lol?...). Since each pricing function 
