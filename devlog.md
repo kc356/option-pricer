@@ -12,10 +12,13 @@ There is serval improvements done:
 1. spot price is isolated from option class, and is injected through the constructor of the pricer class.
 
 And no, that's it... Apparently, we can do lot better:
-1. avoid using recursion in the backward induction
+1. avoid using recursion in the backward induction (and )
 2. use smart pointer instead of raw pointer (this is a big no no tbh)
 3. just for god's sake, lets put the implementation into .cpp file instead of living in .hpp!!!
 
+ok just find out there's more evil things happening:
+1. the tree is not recombining, which means we are growing our tree exponentially, and producing node with same spot price but different sequence of up and down movement.
+2. we are newing the tree node in buildBinaryTree function, but never deleting them, which means we are leaking memory like crazy.
 ---
 
 19/10/2026

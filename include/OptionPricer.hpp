@@ -4,7 +4,6 @@
 
 #ifndef OPTION_PRICER_OPTIONPRICER_HPP
 #define OPTION_PRICER_OPTIONPRICER_HPP
-#include <memory>
 
 #include "Option.hpp"
 
