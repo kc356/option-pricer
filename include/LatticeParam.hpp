@@ -12,7 +12,7 @@ struct MarketData {
     double volatility;
 };
 
-struct Lattice {
+struct LatticeParam {
     double up;
     double down;
     double riskNeutralProbability;
@@ -20,12 +20,12 @@ struct Lattice {
     int steps;
 };
 
-inline Lattice fromDiscrete(const double up, const double down, const double riskFreeRate, const int steps) {
+inline LatticeParam fromDiscrete(const double up, const double down, const double riskFreeRate, const int steps) {
     const double q = (riskFreeRate - down) / (up - down);
     return { up, down, q, 1.0 / riskFreeRate, steps};
 }
 
-inline Lattice CoxRoxRubinstein(const double volatility, const double riskFreeRate, const double expiry, const int steps) {
+inline LatticeParam CoxRoxRubinstein(const double volatility, const double riskFreeRate, const double expiry, const int steps) {
     const double dt = expiry / steps;
     const double up = std::exp(volatility * std::sqrt(dt));
     const double down = 1.0 / up;

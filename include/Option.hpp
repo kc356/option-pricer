@@ -5,29 +5,26 @@
 #ifndef OPTION_PRICER_OPTION_HPP
 #define OPTION_PRICER_OPTION_HPP
 
-
-// Price = Engine( Instrument, MarketData )
-
 class Option {
 public:
     virtual double payoff(double spotPrice) = 0;
 
     explicit Option(const double strikePrice, const double expiry)
-        : strikePrice_(strikePrice), expiry_(expiry) {};
+        : strikePrice_(strikePrice), maturity_(expiry) {};
 
     virtual ~Option() = default;
 
-    double strike_price() const {
+    double getStrikePrice() const {
         return strikePrice_;
     }
 
-    double expiry() const {
-        return expiry_;
+    double getMaturity() const {
+        return maturity_;
     }
 
 protected:
     double strikePrice_ {};
-    double expiry_ {};
+    double maturity_ {};
 
 };
 

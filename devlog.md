@@ -1,9 +1,9 @@
 21/10/2026
 Now the naive implementation is completely updated to adopt only a vector instead of building a binary tree. We first 
 compute the option payoffs in the terminal node values, then we do the backward induction in another forloop. This is 
-mush more efficient. It also trim off quite a bit of code inside the pricer class.
+mush more efficient. It also trims off quite a bit of code inside the pricer class.
 
-Great, after some intense work, 1 can of redbull, 2 pieces of gum, bunch of indie music, now the binary tree works
+Great, after some intense work, 1 can of redbull, 2 pieces of gum, a bunch of indie music, now the binary tree works
 for discrete and CRR model. The option price is computed correctly, the code is much cleaner and flexible. Also, finally
 the hpp and cpp files are separated.
 

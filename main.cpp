@@ -1,7 +1,8 @@
 #include <iostream>
 
+#include "include/LatticeParam.hpp"
 #include "include/Option.hpp"
-#include "include/OptionPricer.hpp"
+#include "include/pricer/BinomialOptionPricer.hpp"
 
 int main() {
 
@@ -11,7 +12,7 @@ int main() {
     BinomialOptionPricer pricer { fromDiscrete(1.08, 0.93, 1.05, 5) };
     std::cout << pricer.price(europeanCall, marketData) << std::endl;
 
-    BinomialOptionPricer crrPricer {CoxRoxRubinstein(marketData.volatility, marketData.riskFreeRate, europeanCall.expiry(), 100)};
+    BinomialOptionPricer crrPricer {CoxRoxRubinstein(marketData.volatility, marketData.riskFreeRate, europeanCall.getMaturity(), 100)};
     std::cout << crrPricer.price(europeanCall, marketData) << std::endl;
 
     return 0;

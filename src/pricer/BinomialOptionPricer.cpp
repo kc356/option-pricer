@@ -2,7 +2,8 @@
 // Created by Kin on 10/21/2026.
 //
 
-#include "../include/OptionPricer.hpp"
+#include <vector>
+#include "../../include/pricer/BinomialOptionPricer.hpp"
 
 double BinomialOptionPricer::price(Option& option, const MarketData& marketData) {
     std::vector<double> values(lattice_.steps + 1);

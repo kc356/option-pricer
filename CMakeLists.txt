@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 add_executable(option_pricer main.cpp
         src/Option.cpp
         include/Option.hpp
-        include/OptionPricer.hpp
-        include/Lattice.hpp
-        src/OptionPricer.cpp)
+        include/pricer/OptionPricer.hpp
+        include/LatticeParam.hpp
+        src/pricer/BinomialOptionPricer.cpp
+        include/pricer/BinomialOptionPricer.hpp)
