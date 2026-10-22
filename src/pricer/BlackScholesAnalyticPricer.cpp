@@ -18,11 +18,12 @@ double BlackScholesAnalyticPricer::price(Option &option, const MarketData &marke
 
     const double d2 = d1 - marketData.volatility * std::sqrt(option.getMaturity());
 
-    // C = SN(d1) - Ke^(-rT)N(d2)
+
     if (option.getOptionType() == OptionType::Put) {
         return option.getStrikePrice() * std::exp(-marketData.riskFreeRate * option.getMaturity()) * standardNormalCDF(-d2)
             - marketData.spotPrice * standardNormalCDF(-d1);
     }
+    // C = SN(d1) - Ke^(-rT)N(d2)
     return marketData.spotPrice * standardNormalCDF(d1)
         - option.getStrikePrice() * std::exp(-marketData.riskFreeRate * option.getMaturity()) * standardNormalCDF(d2);
 }
