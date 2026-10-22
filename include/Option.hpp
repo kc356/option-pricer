@@ -5,12 +5,17 @@
 #ifndef OPTION_PRICER_OPTION_HPP
 #define OPTION_PRICER_OPTION_HPP
 
+enum class OptionType {
+    Call,
+    Put
+};
+
 class Option {
 public:
     virtual double payoff(double spotPrice) = 0;
 
-    explicit Option(const double strikePrice, const double expiry)
-        : strikePrice_(strikePrice), maturity_(expiry) {};
+    Option(const double strikePrice, const double expiry, const OptionType optionType)
+        : strikePrice_(strikePrice), maturity_(expiry), optionType_(optionType) {};
 
     virtual ~Option() = default;
 
@@ -22,24 +27,30 @@ public:
         return maturity_;
     }
 
+    OptionType getOptionType() const {
+        return optionType_;
+    }
+
 protected:
     double strikePrice_ {};
     double maturity_ {};
-
+    OptionType optionType_ {};
 };
 
 class EuropeanCallOption final : public Option {
 public:
     double payoff(double spotPrice) override;
 
-    using Option::Option;
+    EuropeanCallOption(const double strikePrice, const double expiry)
+        : Option {strikePrice, expiry, OptionType::Call}{};
 };
 
 class EuropeanPutOption final : public Option{
 public:
     double payoff(double spotPrice) override;
 
-    using Option::Option;
+    EuropeanPutOption(const double strikePrice, const double expiry)
+        : Option {strikePrice, expiry, OptionType::Put}{};
 };
 
 #endif //OPTION_PRICER_OPTION_HPP

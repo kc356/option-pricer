@@ -9,4 +9,6 @@ add_executable(option_pricer main.cpp
         include/pricer/OptionPricer.hpp
         include/LatticeParam.hpp
         src/pricer/BinomialOptionPricer.cpp
-        include/pricer/BinomialOptionPricer.hpp)
+        include/pricer/BinomialOptionPricer.hpp
+        src/pricer/BlackScholesAnalyticPricer.cpp
+        include/BlackScholesAnalyticPricer.hpp)
