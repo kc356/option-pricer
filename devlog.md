@@ -1,3 +1,13 @@
+22/10/2026
+Today, I am happy to announced that the work is not done yet (shocker)! Our goal is to build two more pricers: finite
+difference method and Monte Carlo simulation. Why? It is because not every kind of option can be priced analytically,
+and not every kind of option can be priced using binary tree. For example, Asian option cannot be priced analytically.
+
+We decomposed the Black-Scholes PDE into a system of linear equations, so solve it using finite difference method. This
+is a interesting and beautiful approach.
+
+---
+
 21/10/2026
 Now the naive implementation is completely updated to adopt only a vector instead of building a binary tree. We first 
 compute the option payoffs in the terminal node values, then we do the backward induction in another forloop. This is 
@@ -7,9 +17,8 @@ Great, after some intense work, 1 can of redbull, 2 pieces of gum, a bunch of in
 for discrete and CRR model. The option price is computed correctly, the code is much cleaner and flexible. Also, finally
 the hpp and cpp files are separated.
 
-
-
 ---
+
 20/10/2026
 So we have 4 pricers, and we want to compute the option price. First thought is obviously having a base class for the
 pricers, with a virtual function of computing the price. (whats the alternative lol?...). Since each pricing function 
@@ -31,6 +40,7 @@ And no, that's it... Apparently, we can do lot better:
 ok just find out there's more evil things happening:
 1. the tree is not recombining, which means we are growing our tree exponentially, and producing node with same spot price but different sequence of up and down movement.
 2. we are newing the tree node in buildBinaryTree function, but never deleting them, which means we are leaking memory like crazy.
+
 ---
 
 19/10/2026

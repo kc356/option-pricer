@@ -10,8 +10,6 @@
 class BlackScholesAnalyticPricer final : public OptionPricer{
 public:
     double price(Option &option, const MarketData &marketData) override;
-
-    using OptionPricer::price;
 };
 
 

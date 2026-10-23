@@ -11,4 +11,6 @@ add_executable(option_pricer main.cpp
         src/pricer/BinomialOptionPricer.cpp
         include/pricer/BinomialOptionPricer.hpp
         src/pricer/BlackScholesAnalyticPricer.cpp
-        include/BlackScholesAnalyticPricer.hpp)
+        include/BlackScholesAnalyticPricer.hpp
+        src/pricer/FiniteDifferencePricer.cpp
+        include/pricer/FiniteDifferencePricer.hpp)
