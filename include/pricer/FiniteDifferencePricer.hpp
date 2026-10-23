@@ -9,7 +9,7 @@
 
 class FiniteDifferencePricer final : public OptionPricer {
 public:
-    double price(Option &option, const MarketData &marketData) override;
+    PricerResult price(Option &option, const MarketData &marketData) override;
 
     FiniteDifferencePricer(const int timeSteps, const int priceSteps)
         : timeSteps_(timeSteps), priceSteps_(priceSteps) {};

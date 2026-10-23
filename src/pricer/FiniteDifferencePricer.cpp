@@ -6,7 +6,7 @@
 
 #include <vector>
 
-double FiniteDifferencePricer::price(Option &option, const MarketData &marketData) {
+PricerResult FiniteDifferencePricer::price(Option &option, const MarketData &marketData) {
     const double dt = option.getMaturity() / timeSteps_;
     const double dS = 4.0 * marketData.spotPrice / priceSteps_;
 
@@ -33,6 +33,6 @@ double FiniteDifferencePricer::price(Option &option, const MarketData &marketDat
     const double x = marketData.spotPrice / dS;
     const int i = static_cast<int>(x);
     const double w = x - i;
-    return (1.0 - w) * values[i] + w * values[i + 1];
+    return {(1.0 - w) * values[i] + w * values[i + 1]};
 
 }

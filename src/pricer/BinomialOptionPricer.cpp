@@ -5,7 +5,7 @@
 #include <vector>
 #include "../../include/pricer/BinomialOptionPricer.hpp"
 
-double BinomialOptionPricer::price(Option& option, const MarketData& marketData) {
+PricerResult BinomialOptionPricer::price(Option& option, const MarketData& marketData) {
     std::vector<double> values(lattice_.steps + 1);
     for (int i { 0 }; i <= lattice_.steps; ++i) {
         const double spotPrice = marketData.spotPrice
@@ -20,5 +20,5 @@ double BinomialOptionPricer::price(Option& option, const MarketData& marketData)
         }
     }
 
-    return values[0];
+    return {values[0]};
 }

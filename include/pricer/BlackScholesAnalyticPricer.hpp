@@ -4,12 +4,12 @@
 
 #ifndef OPTION_PRICER_BLACKSCHOLESANALYTICPRICER_HPP
 #define OPTION_PRICER_BLACKSCHOLESANALYTICPRICER_HPP
-#include "pricer/OptionPricer.hpp"
+#include "OptionPricer.hpp"
 
 
 class BlackScholesAnalyticPricer final : public OptionPricer{
 public:
-    double price(Option &option, const MarketData &marketData) override;
+    PricerResult price(Option &option, const MarketData &marketData) override;
 };
 
 

@@ -13,7 +13,7 @@ public:
     explicit BinomialOptionPricer(const LatticeParam& lattice)
         : lattice_(lattice) {};
 
-    double price(Option& option, const MarketData& marketData) override;
+    PricerResult price(Option& option, const MarketData& marketData) override;
 
 private:
     LatticeParam lattice_;

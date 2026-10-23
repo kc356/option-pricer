@@ -1,3 +1,15 @@
+23/10/2026
+Alright, so now, we have the last pricer to be implemented, that is the Monte Carlo (not the casino, shocker) simulation
+pricer. Under the law of large number, by simulating large amount of price paths, we get the average, aka the expected
+payoff to approximate the option price. The implementation is relatively straightforward compare to the finite difference
+method in my humble opinion. We need a random number generator to be the source of the GBM process, and compute the 
+final payoff at the terminal node, and finally discount back to the present value.
+
+Since we will need to know the standard error when doing Monte Carlo simulation, I have improved the return type of the
+price function into a struct that allow us to contain more result.
+
+---
+
 22/10/2026
 Today, I am happy to announced that the work is not done yet (shocker)! Our goal is to build two more pricers: finite
 difference method and Monte Carlo simulation. Why? It is because not every kind of option can be priced analytically,
@@ -5,6 +17,9 @@ and not every kind of option can be priced using binary tree. For example, Asian
 
 We decomposed the Black-Scholes PDE into a system of linear equations, so solve it using finite difference method. This
 is a interesting and beautiful approach.
+
+The maths of transforming the Black-Scholes PDE into heat equation worth some explanation. It could be mentioned on 
+further notes in the future.
 
 ---
 
