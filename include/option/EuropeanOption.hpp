@@ -13,6 +13,8 @@ public:
 
     EuropeanCallOption(const double strikePrice, const double expiry)
         : Option {strikePrice, expiry, OptionType::Call}{};
+
+    bool canExercise(double currentTime) const override;
 };
 
 class EuropeanPutOption final : public Option{
@@ -21,6 +23,8 @@ public:
 
     EuropeanPutOption(const double strikePrice, const double expiry)
         : Option {strikePrice, expiry, OptionType::Put}{};
+
+    bool canExercise(double currentTime) const override;
 };
 
 

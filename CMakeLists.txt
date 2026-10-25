@@ -16,4 +16,6 @@ add_executable(option_pricer main.cpp
         src/pricer/MonteCarloSimulationPricer.cpp
         include/pricer/MonteCarloSimulationPricer.hpp
         src/option/EuropeanOption.cpp
-        include/option/EuropeanOption.hpp)
+        include/option/EuropeanOption.hpp
+        src/option/AmericanOption.cpp
+        include/option/AmericanOption.hpp)

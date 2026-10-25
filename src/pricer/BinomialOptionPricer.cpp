@@ -14,9 +14,21 @@ PricerResult BinomialOptionPricer::price(Option& option, const MarketData& marke
         values[i] = option.payoff(spotPrice);
     }
 
+    const double dt = option.getMaturity() / lattice_.steps;
     for (int i { lattice_.steps - 1 }; i >= 0; --i) {
+        const double currentTime = dt * i;
+        const bool exercisable = option.canExercise(currentTime);
         for (int j { 0 }; j <= i ; ++j) {
-            values[j] = lattice_.discounting * (lattice_.riskNeutralProbability * values[j+1] + (1 - lattice_.riskNeutralProbability) * values[j]);
+            double value = lattice_.discounting
+                * (lattice_.riskNeutralProbability * values[j+1]
+                    + (1 - lattice_.riskNeutralProbability) * values[j]);
+            if (exercisable) {
+                const double spotPrice = marketData.spotPrice
+                    * std::pow(lattice_.up, j)
+                    * std::pow(lattice_.down, i - j);
+                value = std::max(value, option.payoff(spotPrice));
+            }
+            values[j] = value;
         }
     }
 

@@ -31,6 +31,8 @@ public:
         return optionType_;
     }
 
+    virtual bool canExercise(double currentTime) const = 0;
+
 protected:
     double strikePrice_ {};
     double maturity_ {};
