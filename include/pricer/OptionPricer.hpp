@@ -8,7 +8,7 @@
 #include <optional>
 
 #include "../LatticeParam.hpp"
-#include "../Option.hpp"
+#include "../option/Option.hpp"
 
 struct PricerResult {
     double price {};

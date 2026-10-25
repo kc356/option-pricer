@@ -37,20 +37,5 @@ protected:
     OptionType optionType_ {};
 };
 
-class EuropeanCallOption final : public Option {
-public:
-    double payoff(double spotPrice) override;
-
-    EuropeanCallOption(const double strikePrice, const double expiry)
-        : Option {strikePrice, expiry, OptionType::Call}{};
-};
-
-class EuropeanPutOption final : public Option{
-public:
-    double payoff(double spotPrice) override;
-
-    EuropeanPutOption(const double strikePrice, const double expiry)
-        : Option {strikePrice, expiry, OptionType::Put}{};
-};
 
 #endif //OPTION_PRICER_OPTION_HPP

@@ -1,8 +1,9 @@
 //
-// Created by Kin on 10/19/2026.
+// Created by Kin on 10/25/2026.
 //
 
-#include "../include/Option.hpp"
+#include "../../include/option/EuropeanOption.hpp"
+
 #include <algorithm>
 
 double EuropeanCallOption::payoff(const double spotPrice){

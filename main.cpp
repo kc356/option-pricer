@@ -2,7 +2,8 @@
 
 #include "include/pricer/BlackScholesAnalyticPricer.hpp"
 #include "include/LatticeParam.hpp"
-#include "include/Option.hpp"
+#include "include/option/EuropeanOption.hpp"
+#include "include/option/Option.hpp"
 #include "include/pricer/BinomialOptionPricer.hpp"
 #include "include/pricer/FiniteDifferencePricer.hpp"
 #include "include/pricer/MonteCarloSimulationPricer.hpp"
