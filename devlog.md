@@ -1,3 +1,14 @@
+25/10/2026
+Start to hate this project at this point, but I still implement the model of American option. The difference between it
+and European option is that American option allows early exercise. So, the option base class has added a pure virutal
+function that is `canExercise()`, that determines whether it can be exercised or not. For European option, it is only 
+allowed when the current time is greater than or equal to the maturity. But for American option, it is `true` all the 
+time. Binomial option pricer pricing function is also updated to check whether the option is exercisable. That's it for
+today, tomorrow I will add some works to the other pricers (except `BlackScholesAnalyticPricer` as American option does
+not have closed-form solution).
+
+---
+
 23/10/2026
 Alright, so now, we have the last pricer to be implemented, that is the Monte Carlo (not the casino, shocker) simulation
 pricer. Under the law of large number, by simulating large amount of price paths, we get the average, aka the expected
