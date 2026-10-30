@@ -7,11 +7,15 @@
 #include <random>
 
 #include "OptionPricer.hpp"
+#include "option-pricer/option/AmericanOption.hpp"
 
 
 class MonteCarloSimulationPricer final : public OptionPricer  {
 public:
     PricerResult price(Option &option, const MarketData &marketData) override;
+
+    PricerResult price(AmericanCallOption& option, const MarketData& marketData) = delete;
+    PricerResult price(AmericanPutOption& option, const MarketData& marketData) = delete;
 
     explicit MonteCarloSimulationPricer(const long paths, const long long seed)
         : seed_(seed), paths_(paths) {};

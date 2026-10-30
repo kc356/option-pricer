@@ -2,7 +2,7 @@
 Modified CMakeLists not to compile everything into one executable. Updated gitignore. Turned on compiler warnings. 
 Changed paths to relative paths instead of exact paths. Honestly, these kinds of hygienic tidy-up is more satisfying
 than what I am expecting. So now the plan is: 
-1. Update finite difference pricer to enable pricing American option.
+1. Update finite difference pricer to enable pricing American option. - done
 2. Disable analytical pricer and Monte Carlo pricer for American option. 
 3. Update finite difference pricer to use implicit finite difference method. 
 4. Write tests.

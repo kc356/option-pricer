@@ -5,11 +5,14 @@
 #ifndef OPTION_PRICER_BLACKSCHOLESANALYTICPRICER_HPP
 #define OPTION_PRICER_BLACKSCHOLESANALYTICPRICER_HPP
 #include "OptionPricer.hpp"
+#include "option-pricer/option/AmericanOption.hpp"
 
 
 class BlackScholesAnalyticPricer final : public OptionPricer{
 public:
     PricerResult price(Option &option, const MarketData &marketData) override;
+    PricerResult price(AmericanCallOption& option, const MarketData& marketData) = delete;
+    PricerResult price(AmericanPutOption& option, const MarketData& marketData) = delete;
 };
 
 
