@@ -9,7 +9,7 @@
 
 class EuropeanCallOption final : public Option {
 public:
-    double payoff(double spotPrice) override;
+    double payoff(double spotPrice) const override;
 
     EuropeanCallOption(const double strikePrice, const double expiry)
         : Option {strikePrice, expiry, OptionType::Call}{};
@@ -19,7 +19,7 @@ public:
 
 class EuropeanPutOption final : public Option{
 public:
-    double payoff(double spotPrice) override;
+    double payoff(double spotPrice) const override;
 
     EuropeanPutOption(const double strikePrice, const double expiry)
         : Option {strikePrice, expiry, OptionType::Put}{};

@@ -12,7 +12,7 @@ enum class OptionType {
 
 class Option {
 public:
-    virtual double payoff(double spotPrice) = 0;
+    virtual double payoff(double spotPrice) const = 0;
 
     Option(const double strikePrice, const double expiry, const OptionType optionType)
         : strikePrice_(strikePrice), maturity_(expiry), optionType_(optionType) {};

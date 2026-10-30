@@ -9,7 +9,7 @@
 
 class AmericanCallOption final : public Option{
 public:
-    double payoff(double spotPrice) override;
+    double payoff(double spotPrice) const override;
 
     AmericanCallOption(const double strikePrice, const double expiry)
         : Option {strikePrice, expiry, OptionType::Call}{};
@@ -19,10 +19,10 @@ public:
 
 class AmericanPutOption final : public Option{
 public:
-    double payoff(double spotPrice) override;
+    double payoff(double spotPrice) const override;
 
     AmericanPutOption(const double strikePrice, const double expiry)
-        : Option {strikePrice, expiry, OptionType::Call}{};
+        : Option {strikePrice, expiry, OptionType::Put}{};
 
     bool canExercise(double currentTime) const override;
 };

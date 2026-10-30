@@ -4,7 +4,7 @@ Changed paths to relative paths instead of exact paths. Honestly, these kinds of
 than what I am expecting. So now the plan is: 
 1. Update finite difference pricer to enable pricing American option.
 2. Disable analytical pricer and Monte Carlo pricer for American option. 
-3. Update finite difference pricer to use explicit finite difference method. 
+3. Update finite difference pricer to use implicit finite difference method. 
 4. Write tests.
 5. Add dividends `q`.
 6. Add greeks: delta, gamma, vega, theta, rho blah blah blah.
