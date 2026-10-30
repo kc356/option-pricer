@@ -2,9 +2,13 @@
 // Created by Kin on 10/21/2026.
 //
 
-#include "../../include/pricer/BlackScholesAnalyticPricer.hpp"
 
+#include "option-pricer/pricer/BlackScholesAnalyticPricer.hpp"
+
+#include <cmath>
 #include <numbers>
+
+#include "option-pricer/pricer/OptionPricer.hpp"
 
 double standardNormalCDF(const double x) {
     return 0.5 * std::erfc(-x * std::numbers::sqrt2_v<double> / 2.0);

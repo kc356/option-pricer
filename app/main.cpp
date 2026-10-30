@@ -1,12 +1,12 @@
 #include <iostream>
 
-#include "include/pricer/BlackScholesAnalyticPricer.hpp"
-#include "include/LatticeParam.hpp"
-#include "include/option/EuropeanOption.hpp"
-#include "include/option/Option.hpp"
-#include "include/pricer/BinomialOptionPricer.hpp"
-#include "include/pricer/FiniteDifferencePricer.hpp"
-#include "include/pricer/MonteCarloSimulationPricer.hpp"
+#include "option-pricer/LatticeParam.hpp"
+#include "option-pricer/option/EuropeanOption.hpp"
+#include "option-pricer/pricer/BinomialOptionPricer.hpp"
+#include "option-pricer/pricer/BlackScholesAnalyticPricer.hpp"
+#include "option-pricer/pricer/FiniteDifferencePricer.hpp"
+#include "option-pricer/pricer/MonteCarloSimulationPricer.hpp"
+
 
 int main() {
 

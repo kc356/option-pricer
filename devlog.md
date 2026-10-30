@@ -1,3 +1,21 @@
+30/10/2026
+Modified CMakeLists not to compile everything into one executable. Updated gitignore. Turned on compiler warnings. 
+Changed paths to relative paths instead of exact paths. Honestly, these kinds of hygienic tidy-up is more satisfying
+than what I am expecting. So now the plan is: 
+1. Update finite difference pricer to enable pricing American option.
+2. Disable analytical pricer and Monte Carlo pricer for American option. 
+3. Update finite difference pricer to use explicit finite difference method. 
+4. Write tests.
+5. Add dividends `q`.
+6. Add greeks: delta, gamma, vega, theta, rho blah blah blah.
+7. Implied volatility solver ( wow, I can ditch the excel solver finally! )
+8. Benchmarking, see how bad it is gonna be.
+9. Compare result with Quantlib.
+10. Write a readme, that's probably the most interesting part, write a document that no is gonna read, but just myself
+to geek out a bit.
+
+---
+
 25/10/2026
 Start to hate this project at this point, but I still implement the model of American option. The difference between it
 and European option is that American option allows early exercise. So, the option base class has added a pure virutal

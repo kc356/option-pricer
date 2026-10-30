@@ -2,9 +2,12 @@
 // Created by Kin on 10/22/2026.
 //
 
-#include "../../include/pricer/FiniteDifferencePricer.hpp"
+
+#include "option-pricer/pricer/FiniteDifferencePricer.hpp"
 
 #include <vector>
+
+#include "option-pricer/pricer/OptionPricer.hpp"
 
 PricerResult FiniteDifferencePricer::price(Option &option, const MarketData &marketData) {
     const double dt = option.getMaturity() / timeSteps_;
