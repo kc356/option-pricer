@@ -2,14 +2,13 @@
 // Created by Kin on 10/22/2026.
 //
 
-
 #include "option-pricer/pricer/FiniteDifferencePricer.hpp"
 
 #include <vector>
 
 #include "option-pricer/pricer/OptionPricer.hpp"
 
-PricerResult FiniteDifferencePricer::price(Option &option, const MarketData &marketData) {
+PricerResult FiniteDifferencePricer::price(Option& option, const MarketData& marketData) {
     const double dt = option.getMaturity() / timeSteps_;
     const double dS = 4.0 * marketData.spotPrice / priceSteps_;
 
@@ -24,7 +23,7 @@ PricerResult FiniteDifferencePricer::price(Option &option, const MarketData &mar
             const double a = 0.5 * dt * (s2i2 - marketData.riskFreeRate * i);
             const double b = 1.0 - dt * (s2i2 + marketData.riskFreeRate);
             const double c = 0.5 * dt * (s2i2 + marketData.riskFreeRate * i);
-            newValues[i] = a * values[i-1] + b * values[i] + c * values[i+1];
+            newValues[i] = a * values[i - 1] + b * values[i] + c * values[i + 1];
         }
 
         newValues[0] = values[0] * (1.0 - marketData.riskFreeRate * dt);
@@ -43,5 +42,4 @@ PricerResult FiniteDifferencePricer::price(Option &option, const MarketData &mar
     const int i = static_cast<int>(x);
     const double w = x - i;
     return {(1.0 - w) * values[i] + w * values[i + 1]};
-
 }

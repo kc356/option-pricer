@@ -8,7 +8,6 @@
 #include "option-pricer/pricer/FiniteDifferencePricer.hpp"
 #include "option-pricer/pricer/MonteCarloSimulationPricer.hpp"
 
-
 int main() {
 
     EuropeanCallOption europeanCall {100, 1.0};
@@ -19,10 +18,10 @@ int main() {
     // // // std::cout << pricer.price(europeanCall, marketData) << std::endl;
     // // std::cout << pricer.price(europeanPut, marketData) << std::endl;
     //
-    // BinomialOptionPricer crrPricer {CoxRoxRubinstein(marketData.volatility, marketData.riskFreeRate, europeanCall.getMaturity(), 100)};
-    // std::cout << crrPricer.price(europeanCall, marketData).price << std::endl;
-    // BlackScholesAnalyticPricer bsPricer {};
-    // std::cout << bsPricer.price(europeanCall, marketData).price << std::endl;
+    // BinomialOptionPricer crrPricer {CoxRoxRubinstein(marketData.volatility,
+    // marketData.riskFreeRate, europeanCall.getMaturity(), 100)}; std::cout <<
+    // crrPricer.price(europeanCall, marketData).price << std::endl; BlackScholesAnalyticPricer
+    // bsPricer {}; std::cout << bsPricer.price(europeanCall, marketData).price << std::endl;
     // FiniteDifferencePricer finiteDifferencePricer {2000, 200};
     // std::cout << finiteDifferencePricer.price(europeanCall, marketData).price << std::endl;
     // // std::cout << bsPricer.price(europeanPut, marketData) << std::endl;
@@ -31,7 +30,8 @@ int main() {
 
     AmericanCallOption americanCall {100, 1.0};
     AmericanPutOption americanPut {80, 1.0};
-    BinomialOptionPricer amCrrPricer {CoxRoxRubinstein(marketData.volatility, marketData.riskFreeRate, americanCall.getMaturity(), 100)};
+    BinomialOptionPricer amCrrPricer {CoxRoxRubinstein(
+        marketData.volatility, marketData.riskFreeRate, americanCall.getMaturity(), 100)};
     std::cout << amCrrPricer.price(americanCall, marketData).price << std::endl;
     std::cout << amCrrPricer.price(americanPut, marketData).price << std::endl;
     FiniteDifferencePricer finiteDifferencePricer {2000, 200};

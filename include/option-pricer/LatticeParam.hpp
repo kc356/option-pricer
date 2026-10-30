@@ -20,12 +20,14 @@ struct LatticeParam {
     int steps;
 };
 
-inline LatticeParam fromDiscrete(const double up, const double down, const double riskFreeRate, const int steps) {
+inline LatticeParam fromDiscrete(const double up, const double down, const double riskFreeRate,
+                                 const int steps) {
     const double q = (riskFreeRate - down) / (up - down);
-    return { up, down, q, 1.0 / riskFreeRate, steps};
+    return {up, down, q, 1.0 / riskFreeRate, steps};
 }
 
-inline LatticeParam CoxRoxRubinstein(const double volatility, const double riskFreeRate, const double expiry, const int steps) {
+inline LatticeParam CoxRoxRubinstein(const double volatility, const double riskFreeRate,
+                                     const double expiry, const int steps) {
     const double dt = expiry / steps;
     const double up = std::exp(volatility * std::sqrt(dt));
     const double down = 1.0 / up;
@@ -33,5 +35,4 @@ inline LatticeParam CoxRoxRubinstein(const double volatility, const double riskF
     return {up, down, q, std::exp(-riskFreeRate * dt), steps};
 }
 
-
-#endif //OPTION_PRICER_LATTICE_HPP
+#endif // OPTION_PRICER_LATTICE_HPP

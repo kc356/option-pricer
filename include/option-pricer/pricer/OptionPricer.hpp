@@ -21,4 +21,4 @@ public:
     virtual PricerResult price(Option& option, const MarketData& marketData) = 0;
 };
 
-#endif //OPTION_PRICER_OPTIONPRICER_HPP
+#endif // OPTION_PRICER_OPTIONPRICER_HPP

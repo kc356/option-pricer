@@ -6,10 +6,9 @@
 #define OPTION_PRICER_FINITEDIFFERENCEPRICER_HPP
 #include "OptionPricer.hpp"
 
-
 class FiniteDifferencePricer final : public OptionPricer {
 public:
-    PricerResult price(Option &option, const MarketData &marketData) override;
+    PricerResult price(Option& option, const MarketData& marketData) override;
 
     FiniteDifferencePricer(const int timeSteps, const int priceSteps)
         : timeSteps_(timeSteps), priceSteps_(priceSteps) {};
@@ -19,5 +18,4 @@ private:
     int priceSteps_ {};
 };
 
-
-#endif //OPTION_PRICER_FINITEDIFFERENCEPRICER_HPP
+#endif // OPTION_PRICER_FINITEDIFFERENCEPRICER_HPP

@@ -2,7 +2,6 @@
 // Created by Kin on 10/25/2026.
 //
 
-
 #include "option-pricer/option/AmericanOption.hpp"
 
 #include <algorithm>

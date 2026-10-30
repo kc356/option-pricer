@@ -3,9 +3,9 @@ Modified CMakeLists not to compile everything into one executable. Updated gitig
 Changed paths to relative paths instead of exact paths. Honestly, these kinds of hygienic tidy-up is more satisfying
 than what I am expecting. So now the plan is: 
 1. Update finite difference pricer to enable pricing American option. - done
-2. Disable analytical pricer and Monte Carlo pricer for American option. 
-3. Update finite difference pricer to use implicit finite difference method. 
-4. Write tests.
+2. Disable analytical pricer and Monte Carlo pricer for American option. - done
+3. Update finite difference pricer to use implicit finite difference method. - let's do this at last for god's sake
+4. Write tests. - ok this is annoying, but it's time to show my AI skills!
 5. Add dividends `q`.
 6. Add greeks: delta, gamma, vega, theta, rho blah blah blah.
 7. Implied volatility solver ( wow, I can ditch the excel solver finally! )

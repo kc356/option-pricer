@@ -6,12 +6,9 @@
 #define OPTION_PRICER_BINOMIALOPTIONPRICER_HPP
 #include "OptionPricer.hpp"
 
-
 class BinomialOptionPricer final : public OptionPricer {
 public:
-
-    explicit BinomialOptionPricer(const LatticeParam& lattice)
-        : lattice_(lattice) {};
+    explicit BinomialOptionPricer(const LatticeParam& lattice) : lattice_(lattice) {};
 
     PricerResult price(Option& option, const MarketData& marketData) override;
 
@@ -19,4 +16,4 @@ private:
     LatticeParam lattice_;
 };
 
-#endif //OPTION_PRICER_BINOMIALOPTIONPRICER_HPP
+#endif // OPTION_PRICER_BINOMIALOPTIONPRICER_HPP

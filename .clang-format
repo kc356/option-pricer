@@ -1,0 +1,24 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+Standard: c++20
+
+IndentWidth: 4
+ColumnLimit: 100
+AccessModifierOffset: -4          # keeps public:/private: at column 0
+PointerAlignment: Left            # Option& option, not Option &option
+
+SpaceBeforeCpp11BracedList: true  # int i {0}
+AllowShortFunctionsOnASingleLine: Inline   # one-line getters inside classes
+AllowShortLambdasOnASingleLine: All
+BreakConstructorInitializers: BeforeColon
+
+SortIncludes: CaseSensitive
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^<.*>'                # standard library
+    Priority: 1
+  - Regex: '^"option-pricer/'     # project headers
+    Priority: 2
+  - Regex: '.*'
+    Priority: 3

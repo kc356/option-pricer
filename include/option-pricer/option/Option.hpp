@@ -5,10 +5,7 @@
 #ifndef OPTION_PRICER_OPTION_HPP
 #define OPTION_PRICER_OPTION_HPP
 
-enum class OptionType {
-    Call,
-    Put
-};
+enum class OptionType { Call, Put };
 
 class Option {
 public:
@@ -19,17 +16,11 @@ public:
 
     virtual ~Option() = default;
 
-    double getStrikePrice() const {
-        return strikePrice_;
-    }
+    double getStrikePrice() const { return strikePrice_; }
 
-    double getMaturity() const {
-        return maturity_;
-    }
+    double getMaturity() const { return maturity_; }
 
-    OptionType getOptionType() const {
-        return optionType_;
-    }
+    OptionType getOptionType() const { return optionType_; }
 
     virtual bool canExercise(double currentTime) const = 0;
 
@@ -39,5 +30,4 @@ protected:
     OptionType optionType_ {};
 };
 
-
-#endif //OPTION_PRICER_OPTION_HPP
+#endif // OPTION_PRICER_OPTION_HPP
