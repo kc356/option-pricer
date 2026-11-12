@@ -10,6 +10,7 @@ struct MarketData {
     double spotPrice;
     double riskFreeRate;
     double volatility;
+    double dividendYield {0.0};
 };
 
 struct LatticeParam {
@@ -26,12 +27,13 @@ inline LatticeParam fromDiscrete(const double up, const double down, const doubl
     return {up, down, q, 1.0 / riskFreeRate, steps};
 }
 
-inline LatticeParam CoxRoxRubinstein(const double volatility, const double riskFreeRate,
-                                     const double expiry, const int steps) {
+inline LatticeParam CoxRossRubinstein(const double volatility, const double riskFreeRate,
+                                     const double expiry, const int steps,
+                                     const double dividendYield = 0.0) {
     const double dt = expiry / steps;
     const double up = std::exp(volatility * std::sqrt(dt));
     const double down = 1.0 / up;
-    const double q = (std::exp(riskFreeRate * dt) - down) / (up - down);
+    const double q = (std::exp((riskFreeRate - dividendYield) * dt) - down) / (up - down);
     return {up, down, q, std::exp(-riskFreeRate * dt), steps};
 }
 

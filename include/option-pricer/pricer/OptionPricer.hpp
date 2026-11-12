@@ -12,7 +12,7 @@
 
 struct PricerResult {
     double price {};
-    std::optional<double> standardError;
+    std::optional<double> standardError {};
 };
 
 class OptionPricer {

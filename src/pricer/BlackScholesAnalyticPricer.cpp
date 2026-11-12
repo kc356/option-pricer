@@ -14,24 +14,25 @@ double standardNormalCDF(const double x) {
 }
 
 PricerResult BlackScholesAnalyticPricer::price(Option& option, const MarketData& marketData) {
-    const double d1 = (std::log(marketData.spotPrice / option.getStrikePrice()) +
-                       (marketData.riskFreeRate + std::pow(marketData.volatility, 2) / 2) *
-                           option.getMaturity()) /
-                      (marketData.volatility * std::sqrt(option.getMaturity()));
+    const double T = option.getMaturity();
+    const double K = option.getStrikePrice();
+    const double sigmaSqrtT = marketData.volatility * std::sqrt(T);
 
-    const double d2 = d1 - marketData.volatility * std::sqrt(option.getMaturity());
+    const double d1 = (std::log(marketData.spotPrice / K) +
+                       (marketData.riskFreeRate - marketData.dividendYield +
+                        0.5 * marketData.volatility * marketData.volatility) *
+                           T) /
+                      sigmaSqrtT;
+    const double d2 = d1 - sigmaSqrtT;
+
+    const double discountedSpot = marketData.spotPrice * std::exp(-marketData.dividendYield * T);
+    const double discountedStrike = K * std::exp(-marketData.riskFreeRate * T);
 
     double price;
     if (option.getOptionType() == OptionType::Put) {
-        price = option.getStrikePrice() *
-                    std::exp(-marketData.riskFreeRate * option.getMaturity()) *
-                    standardNormalCDF(-d2) -
-                marketData.spotPrice * standardNormalCDF(-d1);
+        price = discountedStrike * standardNormalCDF(-d2) - discountedSpot * standardNormalCDF(-d1);
     } else {
-        price = marketData.spotPrice * standardNormalCDF(d1) -
-                option.getStrikePrice() *
-                    std::exp(-marketData.riskFreeRate * option.getMaturity()) *
-                    standardNormalCDF(d2);
+        price = discountedSpot * standardNormalCDF(d1) - discountedStrike * standardNormalCDF(d2);
     }
 
     return {price};

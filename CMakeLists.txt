@@ -19,8 +19,7 @@ add_library(option_pricer
         src/pricer/BinomialOptionPricer.cpp
         src/pricer/BlackScholesAnalyticPricer.cpp
         src/pricer/FiniteDifferencePricer.cpp
-        src/pricer/MonteCarloSimulationPricer.cpp
-        tests/test_binomial.cpp)
+        src/pricer/MonteCarloSimulationPricer.cpp)
 add_library(option_pricer::option_pricer ALIAS option_pricer)
 
 target_include_directories(option_pricer PUBLIC

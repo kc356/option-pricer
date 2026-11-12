@@ -13,10 +13,10 @@ PricerResult MonteCarloSimulationPricer::price(Option& option, const MarketData&
     for (long i {0}; i < paths_; ++i) {
         const double S_T =
             marketData.spotPrice *
-            std::exp(
-                (marketData.riskFreeRate - 0.5 * marketData.volatility * marketData.volatility) *
-                    option.getMaturity() +
-                marketData.volatility * std::sqrt(option.getMaturity()) * normal_(engine));
+            std::exp((marketData.riskFreeRate - marketData.dividendYield -
+                      0.5 * marketData.volatility * marketData.volatility) *
+                         option.getMaturity() +
+                     marketData.volatility * std::sqrt(option.getMaturity()) * normal_(engine));
 
         const double payoff = option.payoff(S_T);
         sumPayoff += payoff;

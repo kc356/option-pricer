@@ -9,7 +9,9 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(option_pricer_tests
         test_black_scholes.cpp
-        test_binomial.cpp)
+        test_binomial.cpp
+        test_finite_difference.cpp
+        test_monte_carlo.cpp)
 target_link_libraries(option_pricer_tests PRIVATE option_pricer GTest::gtest_main)
 
 include(GoogleTest)
