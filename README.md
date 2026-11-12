@@ -237,19 +237,64 @@ $q = 2\%$, $T = 1$. Each Big-O column is fitted by Google Benchmark across the s
 | 100,000 | 3.1 ms | 32 M paths/s |
 | 1,000,000 | 31 ms | 32 M paths/s |
 
-**What the numbers say:**
+**Raw output**:
+```bash
+/Users/kc356/CLionProjects/option-pricer/cmake-build-release/benchmarks/option_pricer_bench
+Unable to determine clock rate from sysctl: hw.cpufrequency: No such file or directory
+This does not affect benchmark measurements, only the metadata output.
+***WARNING*** Failed to set thread affinity. Estimated CPU frequency may be incorrect.
+2026-11-12T20:01:39+08:00
+Running /Users/kc356/CLionProjects/option-pricer/cmake-build-release/benchmarks/option_pricer_bench
+Run on (12 X 24 MHz CPU s)
+CPU Caches:
+  L1 Data 64 KiB
+  L1 Instruction 128 KiB
+  L2 Unified 4096 KiB (x12)
+Load Average: 3.94, 4.11, 3.57
+-----------------------------------------------------------------------------------
+Benchmark                                         Time             CPU   Iterations
+-----------------------------------------------------------------------------------
+BM_BlackScholes                                22.0 ns         21.9 ns     31016408
+BM_Binomial<EuropeanPutOption>/128             3787 ns         3732 ns       181805
+BM_Binomial<EuropeanPutOption>/256             9553 ns         9544 ns        73581
+BM_Binomial<EuropeanPutOption>/512            29588 ns        29575 ns        23050
+BM_Binomial<EuropeanPutOption>/1024           99629 ns        99593 ns         7017
+BM_Binomial<EuropeanPutOption>/2048          358900 ns       358611 ns         1955
+BM_Binomial<EuropeanPutOption>/4096         1359406 ns      1358675 ns          511
+BM_Binomial<EuropeanPutOption>_BigO            0.08 N^2        0.08 N^2  
+BM_Binomial<EuropeanPutOption>_RMS                3 %             3 %    
+BM_Binomial<AmericanPutOption>/128           136662 ns       136563 ns         5159
+BM_Binomial<AmericanPutOption>/256           538482 ns       538291 ns         1308
+BM_Binomial<AmericanPutOption>/512          2150595 ns      2149422 ns          327
+BM_Binomial<AmericanPutOption>/1024         8527407 ns      8523427 ns           82
+BM_Binomial<AmericanPutOption>/2048        34335016 ns     34312619 ns           21
+BM_Binomial<AmericanPutOption>/4096       136288467 ns    136241000 ns            5
+BM_Binomial<AmericanPutOption>_BigO            8.13 N^2        8.12 N^2  
+BM_Binomial<AmericanPutOption>_RMS                0 %             0 %    
+BM_CrankNicolson<EuropeanPutOption>/100       0.063 ms        0.063 ms        11231
+BM_CrankNicolson<EuropeanPutOption>/128       0.104 ms        0.104 ms         6737
+BM_CrankNicolson<EuropeanPutOption>/256       0.409 ms        0.409 ms         1712
+BM_CrankNicolson<EuropeanPutOption>/512        1.64 ms         1.64 ms          427
+BM_CrankNicolson<EuropeanPutOption>/1024       6.61 ms         6.60 ms          107
+BM_CrankNicolson<EuropeanPutOption>/1600       16.5 ms         16.5 ms           42
+BM_CrankNicolson<EuropeanPutOption>_BigO       6.43 N^2        6.42 N^2  
+BM_CrankNicolson<EuropeanPutOption>_RMS           1 %             1 %    
+BM_CrankNicolson<AmericanPutOption>/100       0.916 ms        0.916 ms          756
+BM_CrankNicolson<AmericanPutOption>/128        1.47 ms         1.47 ms          479
+BM_CrankNicolson<AmericanPutOption>/256        5.55 ms         5.54 ms          127
+BM_CrankNicolson<AmericanPutOption>/512        27.6 ms         27.2 ms           26
+BM_CrankNicolson<AmericanPutOption>/1024        176 ms          175 ms            4
+BM_CrankNicolson<AmericanPutOption>/1600        630 ms          621 ms            1
+BM_CrankNicolson<AmericanPutOption>_BigO       0.15 N^3        0.15 N^3  
+BM_CrankNicolson<AmericanPutOption>_RMS           4 %             4 %    
+BM_MonteCarlo/10000                           0.269 ms        0.269 ms         2577 items_per_second=37.2081M/s
+BM_MonteCarlo/100000                           3.15 ms         3.15 ms          223 items_per_second=31.757M/s
+BM_MonteCarlo/1000000                          31.2 ms         31.2 ms           23 items_per_second=32.0918M/s
+BM_MonteCarlo_BigO                            31.19 N         31.16 N    
+BM_MonteCarlo_RMS                                 0 %             0 %    
 
-- **The American binomial is about 85× slower than the European one at the same step count.** On
-  every step where exercise is allowed, each node recomputes its spot price with two `std::pow`
-  calls and makes a virtual `payoff()` call. Getting each spot by multiplying the previous one by
-  $u/d$ should close most of that gap.
-- **The American Crank–Nicolson scales as $O(N^3)$ rather than $O(N^2)$.** PSOR needs more iterations per time
-  step as the grid gets finer. For vanilla puts, the Brennan–Schwartz algorithm solves each step
-  directly in $O(N)$, which would restore $O(N^2)$ scaling.
-- **For a European option, Crank–Nicolson is the most accurate per millisecond.** A 400 × 500
-  grid, about 1 ms, is within 3e-3 of Black–Scholes. Reaching a similar error with Monte Carlo
-  takes millions of paths, because its error only shrinks as $O(1/\sqrt{M})$ for $M$ paths.
-
+Process finished with exit code 0
+```
 To reproduce the results, or to run only some of them:
 
 ```sh
